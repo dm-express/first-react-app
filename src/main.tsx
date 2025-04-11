@@ -3,10 +3,12 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.tsx";
 import { IsUserOnline } from "./components/userDetails.tsx";
+import RegistrationForm from "./components/registrationform.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <App />
+    {/* <App /> */}
+    <RegistrationForm />
   </StrictMode>
 );
 

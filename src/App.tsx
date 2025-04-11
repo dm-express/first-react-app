@@ -1,48 +1,41 @@
-import { useEffect, useLayoutEffect, useState } from "react";
-import reactLogo from "./assets/react.svg";
+import { useEffect, useState } from "react";
 import viteLogo from "/vite.svg";
 import "./App.css";
-import HelloWorld from "./HelloWorld";
 import UserDetailsComponent, { IsUserOnline } from "./components/userDetails";
 
-// JSX / TSX -> Typyscript XML
+// REACT BASICS
+// 1. Components: Building blocks of React applications.
+// 2. JSX (JavaScript XML): Syntax extension to write HTML inside JS.
+// 3. State: Data managed within the component using useState.
+// 4. Hooks: Special functions that manage state and lifecycle in functional components.
+//    - useState: Manages component-level state.
+//    - useEffect: Handles side effects like API calls, subscriptions, etc.
+
+// COMMON CONCEPTS IN REAL PROJECTS
+// - Landing Pages: Used for marketing or showcasing services.
+// - Common Layouts: Navigation bar, sidebar, styling consistency.
+// - Component Libraries: Material UI, ShadCn UI (Tailwind), Magic UI, etc.
+
 function App() {
+  // Local state variables
   const [count, setCount] = useState(0);
-  const [name, setName] = useState("");
-  // hooks: functions that are responsible for re-rendering.
+  const [name, setName] = useState(""); // currently unused, but useful for user input later
 
-  // useState: -> to store the local data
-  // useEffect: -> to handle the initial functions & the side effects
-  // [] -> dependency array / dependencies
-
-  // useEffect get triggered after the component is rendered
+  // useEffect: Called AFTER the component is rendered
   useEffect(() => {
-    console.log("Initial Value");
+    console.log("Component Mounted");
   }, []);
 
   useEffect(() => {
-    console.log("Initial Value", count);
+    console.log("Count updated to:", count);
   }, [count]);
 
-  // useLayoutEffect get triggered before the component is rendered
-  // useLayoutEffect(() => {
-  //   console.log("Initial Value");
-  // }, []);
-
-  // let newCount = 0;
-
-  // variable type [getterName, setterName] = useState(initialValue)
-
-  // setCount((count) => count + 1);
-
-  // setter((previousValue) => newValue)
-
+  // Event handler for demo
   const addNumbers = () => {
-    alert(2 + 3);
+    alert(2 + 3); // simple alert demo
   };
 
-  // State: dynamic data that changes inside the component
-
+  // Array of user details
   const userDetailsList = [
     {
       name: "Ruttvik",
@@ -61,67 +54,47 @@ function App() {
     },
   ];
 
-  // console.log("newCount", newCount);
   return (
     <>
+      {/* Logo Section */}
       <div>
-        <a href="https://vite.dev" target="_blank">
+        <a href="https://vite.dev" target="_blank" rel="noreferrer">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
-        {/* <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a> */}
       </div>
+
       <h1>DM Express</h1>
+
+      {/* Counter Section */}
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          countsss is {count}
+        <button onClick={() => setCount((prev) => prev + 1)}>
+          count is {count}
         </button>
-        {/* <button
-          onClick={() => {
-            newCount += 1;
-          }}
-        >
-          new count is {newCount}
-        </button> */}
         <button onClick={addNumbers}>Alert</button>
         <p>
-          Edit <code>src/App.tsx</code> and save to see the real time changes.
+          Edit <code>src/App.tsx</code> and save to test live updates.
         </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-      {/* <HelloWorld /> */}
 
-      {userDetailsList.map((ele) => {
-        // u can add some logic over here
-        const empId = `${ele.name}-${ele.department}`;
-        // console.log("empId", empId);
+      <p className="read-the-docs">Click on the Vite logo to learn more</p>
+
+      {/* Render list of user details */}
+      {userDetailsList.map((user) => {
+        const empId = `${user.name}-${user.department}`; // unique key if needed
         return (
-          <>
-            <UserDetailsComponent department={ele.department} name={ele.name} />
-            <IsUserOnline isOnline={ele.isOnline} />
-          </>
+          <div key={empId}>
+            <UserDetailsComponent
+              department={user.department}
+              name={user.name}
+            />
+            <IsUserOnline isOnline={user.isOnline} />
+          </div>
         );
       })}
 
       <hr />
-
-      {/* {userDetailsList.map((ele) => (
-        <IsUserOnline isOnline={ele.isOnline} />
-      ))} */}
-
-      {/* <UserDetailsComponent
-        department={userDetailsList[0].department}
-        name={userDetailsList[0].name}
-      /> */}
     </>
   );
 }
-
-// App is the parent
-// UserDetailsComponent is a child
-// IsUserOnline is a child
 
 export default App;
