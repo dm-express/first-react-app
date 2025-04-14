@@ -52,6 +52,8 @@ const UserDetails = ({
   );
 };
 
+// Circular Dependency
+
 export const IsUserOnline = ({ isOnline }: { isOnline: boolean }) => {
   return <p>{String(isOnline)}</p>;
 };

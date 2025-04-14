@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button, TextField, Stack } from "@mui/material";
+import { useAuth } from "../wrapper/authWrapper";
 
 // interfaces: Structure of the object with types -> strictly checked
 // types: Structure of the object with types -> loosely checked
@@ -17,6 +18,7 @@ interface TRegistrationForm {
 // };
 
 const RegistrationForm = () => {
+  const { isUserLoggedIn, setIsUserLoggedIn } = useAuth();
   //   const [name, setName] = useState<string>("");
   //   const [email, setEmail] = useState<string>("");
   //   const [password, setPassword] = useState<string>("");
@@ -67,13 +69,16 @@ const RegistrationForm = () => {
 
   const onFormSubmit = () => {
     // formState.preventDefault();
-    console.log("formState", {
-      //   name,
-      //   email,
-      //   password: password,
-      registrationForm,
-    });
-    setFormSubmitted(true);
+    // console.log("formState", {
+    //   //   name,
+    //   //   email,
+    //   //   password: password,
+    //   registrationForm,
+    // });
+    // setFormSubmitted(true);
+    setIsUserLoggedIn(!isUserLoggedIn);
+
+    // !true -> false / !false -> true
   };
 
   // Stack, Box: Layout component of MUI

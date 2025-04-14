@@ -4,11 +4,17 @@ import "./index.css";
 import App from "./App.tsx";
 import { IsUserOnline } from "./components/userDetails.tsx";
 import RegistrationForm from "./components/registrationform.tsx";
+import AuthProvider from "./wrapper/authWrapper.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    {/* <App /> */}
-    <RegistrationForm />
+    {/* parent component */}
+    <AuthProvider>
+      {/* child component 1 */}
+      <App />
+      {/* child component 2 */}
+      <RegistrationForm />
+    </AuthProvider>
   </StrictMode>
 );
 
