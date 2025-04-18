@@ -5,16 +5,21 @@ import App from "./App.tsx";
 import { IsUserOnline } from "./components/userDetails.tsx";
 import RegistrationForm from "./components/registrationform.tsx";
 import AuthProvider from "./wrapper/authWrapper.tsx";
+import { BrowserRouter } from "react-router";
+import AppRoutes from "./AppRoutes.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    {/* parent component */}
-    <AuthProvider>
-      {/* child component 1 */}
-      <App />
-      {/* child component 2 */}
-      <RegistrationForm />
-    </AuthProvider>
+    <BrowserRouter>
+      {/* parent component */}
+      <AuthProvider>
+        {/* child component 1 */}
+        {/* <App /> */}
+        <AppRoutes />
+        {/* child component 2
+        <RegistrationForm /> */}
+      </AuthProvider>
+    </BrowserRouter>
   </StrictMode>
 );
 
